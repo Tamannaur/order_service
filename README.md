@@ -1,4 +1,4 @@
-
+Note: First need to run inventory service then Order service
 # Order Service
 
 A Spring Boot application for managing inventory with order processing capabilities. Includes unit tests for order handling logic and uses H2 in-memory database for development.
