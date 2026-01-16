@@ -29,7 +29,7 @@
     </changeSet>
     <changeSet id="reset-sequence" author="tamannaur">
         <sql>
-            ALTER TABLE orders ALTER COLUMN order_id RESTART WITH 26;
+            ALTER TABLE orders ALTER COLUMN order_id RESTART WITH 11;
         </sql>
     </changeSet>
 

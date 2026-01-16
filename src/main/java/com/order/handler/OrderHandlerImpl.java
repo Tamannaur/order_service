@@ -4,6 +4,8 @@ import com.order.dto.OrderRequest;
 import com.order.dto.OrderResponse;
 import com.order.entity.Order;
 import com.order.repository.OrderRepository;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -23,7 +25,13 @@ public class OrderHandlerImpl implements OrderHandler {
     public OrderResponse handleOrder(OrderRequest request) {
 
         String inventoryUrl = "http://localhost:8080/inventory/update";
-        restTemplate.postForObject(inventoryUrl, request, String.class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("fromOutSide", String.valueOf(true));
+        HttpEntity<OrderRequest> entity = new HttpEntity<>(request, headers);
+
+        restTemplate.postForEntity(inventoryUrl, entity, String.class);
+
 
         Order order = new Order();
         order.setProductId(request.getProductId());
